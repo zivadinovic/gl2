@@ -1,0 +1,76 @@
+
+
+fun read(i64 p__fd, i64 s__buf, i64 n__size)
+{
+    return sys_read(p__fd, s__buf, n__size);
+}
+
+fun write(i64 p__fd, i64 s__buf, i64 n__size)
+{
+    return sys_write(p__fd, s__buf, n__size);
+}
+
+fun inputn(i64 s__fd, i64 n__size)
+{
+    sys_read(0, s__fd, n__size);
+
+    return 0;
+}
+
+fun printn(i64 s__fd, i64 n__size)
+{
+    sys_write(1, s__fd, n__size);
+
+    return 0;
+}
+
+fun errorn(i64 s__fd, i64 n__size)
+{
+    sys_write(2, s__fd, n__size);
+    
+    return 0;
+}
+
+fun printf(i64 s__format, i64 refp__addrs)
+{
+    i64 formatted = strfmt(s__format, refp__addrs);
+    print(formatted);
+    memfree(formatted);
+    return 0;
+}
+
+fun input(i64 s__fd)
+{
+    sys_read(0, s__fd, strbuf(s__fd));
+
+    return 0;
+}
+
+fun print(i64 s__fd)
+{
+    sys_write(1, s__fd, strbuf(s__fd));
+
+    return 0;
+}
+
+fun error(i64 s__fd)
+{
+    sys_write(2, s__fd, strbuf(s__fd));
+
+    return 0;
+}
+
+fun open(i64 s__fd, i64 n__flags, i64 n__perm)
+{
+    return sys_open(s__fd, n__flags, n__perm);
+}
+
+fun close(i64 s__fd)
+{
+    return sys_close(s__fd);
+}
+
+fun lseek(i64 s__fd, i64 n__offset, i64 n__whence)
+{
+    return sys_lseek(s__fd, n__offset, n__whence);
+}

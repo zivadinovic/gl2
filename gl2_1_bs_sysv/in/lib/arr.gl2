@@ -1,0 +1,67 @@
+
+
+fun arrinit(i64 n__size)
+{
+    if (n__size < 4)
+    {
+        n__size = 4;
+    }
+
+    i64 block = memalloc( (n__size + 1) * 8 );
+    block[-1] = 0;
+    return block;
+}
+
+fun arradd(i64 p__block, i64 elem)
+{
+    i64 currentcount = p__block[-1];
+
+    i64 newblock = memrealloc(p__block, (currentcount + 2) * 8);
+    newblock[-1] = currentcount + 1;
+    
+    newblock[currentcount] = elem;
+
+    return newblock;
+}
+
+fun arrrem(i64 p__array, i64 n__index)
+{
+    i64 currentcount = p__array[-1];
+
+    i64 k = n__index;
+    while (k < currentcount - 1)
+    {
+        p__array[k] = p__array[k + 1];
+        k = k + 1;
+    }
+
+    i64 newcount = currentcount - 1;
+
+    i64 newblock = memrealloc(p__array, (newcount + 1) * 8);
+    newblock[-1] = newcount;
+
+    return newblock;
+}
+
+fun arrclean(i64 p__array)
+{
+    p__array[-1] = 0;
+    return p__array;
+}
+
+fun arrfind(i64 p__array, i64 elem)
+{
+    i64 index = 0;
+
+    while (index < p__array[-1])
+    {
+        if (p__array[index] == elem)
+        {
+            return index;
+        }
+
+        index = index + 1;
+    }
+
+    return -1;
+}

@@ -1,0 +1,176 @@
+
+
+fun isprint(i64 un__byte)
+{
+    if (un__byte > 31)
+    {
+        return 1;
+    }
+
+    return 0;
+}
+
+fun isspace(i64 un__byte)
+{
+    if (un__byte == 32)
+    {
+        return 1;
+    }
+    if (un__byte >= 9)
+    {
+        if (un__byte <= 13)
+        {
+            return 1;
+        }
+    }
+
+    return 0;
+}
+
+fun isdigit(i64 un__byte)
+{
+    if (un__byte >= 48)
+    {
+        if (un__byte <= 57)
+        {
+            return 1;
+        }
+    }
+
+    return 0;
+}
+
+fun isalpha(i64 un__byte)
+{
+    if (un__byte >= 65)
+    {
+        if (un__byte <= 90)
+        {
+            return 1;
+        }
+    }
+    if (un__byte >= 97)
+    {
+        if (un__byte <= 122)
+        {
+            return 1;
+        }
+    }
+
+    return 0;
+}
+
+fun isalnum(i64 un__byte)
+{
+    if (un__byte >= 65)
+    {
+        if (un__byte <= 90)
+        {
+            return 1;
+        }
+    }
+    if (un__byte >= 97)
+    {
+        if (un__byte <= 122)
+        {
+            return 1;
+        }
+    }
+    if (un__byte >= 48)
+    {
+        if (un__byte <= 57)
+        {
+            return 1;
+        }
+    }
+
+    return 0;
+}
+
+fun isident(i64 un__byte)
+{
+    if (isalpha(un__byte) == 1)
+    {
+        return 1;
+    }
+
+    if (un__byte == 95)
+    {
+        return 1;
+    }
+
+    return 0;
+}
+
+fun ischar(i64 un__byte)
+{
+    if (isalnum(un__byte) == 1)
+    {
+        return 1;
+    }
+
+    if (un__byte == 95)
+    {
+        return 1;
+    }
+
+    return 0;
+}
+
+fun islower(i64 un__byte)
+{
+    if (un__byte >= 97)
+    {
+        if (un__byte <= 122)
+        {
+            return 1;
+        }
+    }
+    return 0;
+}
+
+fun isupper(i64 un__byte)
+{
+    if (un__byte >= 65)
+    {
+        if (un__byte <= 90)
+        {
+            return 1;
+        }
+    }
+
+    return 0;
+}
+
+fun tolower(i64 un__byte)
+{
+    if (un__byte >= 65)
+    {
+        if (un__byte <= 90)
+        {
+            return un__byte + (97 - 65);
+        }
+    }
+
+    return un__byte;
+}
+
+fun toupper(i64 un__byte)
+{
+    if (un__byte >= 97)
+    {
+        if (un__byte <= 122)
+        {
+            return un__byte - (97 - 65);
+        }
+    }
+
+    return un__byte;
+}
+
+fun exit(i64 n__code)
+{
+    sys_exit(n__code);
+
+    return 0;
+}

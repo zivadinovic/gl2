@@ -1,0 +1,306 @@
+
+
+fun strfmtes(i64 s__string)
+{
+    i64 size = strlen(s__string);
+    i64 newstr = arrinit(size);
+
+    i64 i = 0, prc = 0 ;
+    while (i < size)
+    {
+        prc = 0 ;
+
+        if (s__string[i] == 92)
+        {
+            if (i + 1 < size)
+            {
+                i64 char = s__string[i + 1];
+
+                if (char == 97)
+                {
+                    newstr = arradd(newstr, 7);
+                }
+                if (char == 98)
+                {
+                    newstr = arradd(newstr, 8);
+                }
+                if (char == 116)
+                {
+                    newstr = arradd(newstr, 9);
+                }
+                if (char == 110)
+                {
+                    newstr = arradd(newstr, 10);
+                }
+                if (char == 118)
+                {
+                    newstr = arradd(newstr, 11);
+                }
+                if (char == 114)
+                {
+                    newstr = arradd(newstr, 13);
+                }
+                if (char == 34)
+                {
+                    newstr = arradd(newstr, 34);
+                }
+                if (char == 39)
+                {
+                    newstr = arradd(newstr, 39);
+                }
+                if (char == 48)
+                {
+                    newstr = arradd(newstr, 0);
+                }
+                if (char == 63)
+                {
+                    newstr = arradd(newstr, 63);
+                }
+                if (char == 92)
+                {
+                    newstr = arradd(newstr, 92);
+                }
+
+                if (char != 97)
+                {
+                if (char != 98)
+                {
+                if (char != 116)
+                {
+                if (char != 110)
+                {
+                if (char != 118)
+                {
+                if (char != 114)
+                {
+                if (char != 34)
+                {
+                if (char != 39)
+                {
+                if (char != 48)
+                {
+                if (char != 63)
+                {
+                if (char != 92)
+                {
+                    newstr = arradd(newstr, 92);
+                    newstr = arradd(newstr, char);
+                }
+                }
+                }
+                }
+                }
+                }
+                }
+                }
+                }
+                }
+                }
+
+                i = i + 2;
+                prc = 1;
+            }
+        }
+
+        if (prc == 0)
+        {
+            newstr = arradd(newstr, s__string[i]);
+            i = i + 1;
+        }
+    }
+
+    return newstr;
+}
+
+fun strfmt(i64 s__string, i64 refp__values)
+{
+    i64 formatted = strfmtes(s__string), len = strlen(formatted);
+    i64 newstr = arrinit(len);
+
+    i64 i = 0, prc = 0 ;
+    i64 k = 0, tmplen = 0, tmpchar = 0, tmpstr = 0 ;
+
+    i64 p__values = 0, with_values = 0, char = 0, elem = 0 ;
+
+    while (i < len)
+    {
+        prc = 0;
+
+        if (formatted[i] == 126)
+        {
+            if (i + 1 < len)
+            {
+                char = formatted[i + 1];
+
+                if (with_values == 0)
+                {
+                    p__values = refp__values[0];
+                    with_values = 1;
+                }
+
+                if (char == 105)
+                {
+                    elem = p__values[0];
+                    tmpstr = string(elem);
+                    if (elem == 0)
+                    {
+                        tmpstr = "0";
+                    }
+                    tmplen = strlen(tmpstr);
+
+                    k = 0;
+                    while (k < tmplen)
+                    {
+                        tmpchar = tmpstr[k];
+                        newstr = arradd(newstr, tmpchar);
+                        k = k + 1;
+                    }
+
+                    elem = 0;
+                    memfree(tmpstr);
+                    tmplen = 0;
+
+                    p__values = p__values + 8;
+                }
+                if (char == 115)
+                {
+                    elem = p__values[0];
+                    tmplen = strlen(elem);
+
+                    k = 0;
+                    while (k < tmplen)
+                    {
+                        tmpchar = elem[k];
+                        newstr = arradd(newstr, tmpchar);
+                        k = k + 1;
+                    }
+
+                    elem = 0;
+                    tmplen = 0;
+
+                    p__values = p__values + 8;
+                }
+                if (char == 99)
+                {
+                    elem = p__values[0];
+
+                    newstr = arradd(newstr, elem);
+
+                    p__values = p__values + 8;
+                }
+                if (char == 126)
+                {
+                    newstr = arradd(newstr, 126);
+                }
+
+                if (char != 105)
+                {
+                if (char != 115)
+                {
+                if (char != 126)
+                {
+                    newstr = arradd(newstr, 126);
+                    newstr = arradd(newstr, char);
+                }
+                }
+                }
+
+                i = i + 2;
+                prc = 1;
+            }
+        }
+
+        if (prc == 0)
+        {
+            newstr = arradd(newstr, formatted[i]);
+            i = i + 1;
+        }
+    }
+
+    memfree(formatted);
+    return newstr;
+}
+
+fun strlen(i64 s__string)
+{
+    i64 i = 0;
+
+    while (s__string[i] != 0)
+    {
+        i = i + 1;
+    }
+
+    return i;
+}
+
+fun strbuf(i64 s__string)
+{
+    return strlen(s__string) * 8;
+}
+
+fun strcat(i64 s__destination, i64 s__source)
+{
+    i64 i = 0, k = 0;
+
+    while (s__destination[i] != 0)
+    {
+        i = i + 1;
+    }
+
+    while (s__source[k] != 0)
+    {
+        s__destination[i + k] = s__source[k];
+        k = k + 1;
+    }
+
+    s__destination[i + k] = 0;
+
+    return s__destination;
+}
+
+fun strcpy(i64 s__destination, i64 s__source)
+{
+    i64 i = 0;
+
+    while (s__source[i] != 0)
+    {
+        s__destination[i] = s__source[i];
+        i = i + 1;
+    }
+
+    s__destination[i] = 0;
+
+    return s__destination;
+}
+
+fun strdup(i64 s__source)
+{
+    i64 size = strlen(s__source) + 1;
+    i64 dest = arrinit(size);
+
+    if (dest == 0)
+    {
+        return -1;
+    }
+
+    strcpy(dest, s__source);
+
+    return dest;
+}
+
+fun strcmp(i64 s__string1, i64 s__string2)
+{
+    i64 i = 0;
+
+    while (s__string1[i] != 0)
+    {
+        if (s__string1[i] != s__string2[i])
+        {
+            return s__string1[i] - s__string2[i];
+        }
+
+        i = i + 1;
+    }
+
+    return s__string1[i] - s__string2[i];
+}

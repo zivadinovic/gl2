@@ -1,0 +1,61 @@
+
+
+fun memalloc(i64 n__size_to_alloc)
+{
+    i64 total = n__size_to_alloc + 16;
+
+    i64 block = sys_mmap( 0, total, 3, 34, -1, 0 );
+
+    if (block == (-1))
+    {
+        return -1;
+    }
+
+    block[0] = total;
+
+    return block + 16;
+}
+
+fun memrealloc(i64 p__ptr2block, i64 n__new_size)
+{
+    if (p__ptr2block == 0)
+    {
+        return memalloc(n__new_size);
+    }
+
+    i64 oldblock = p__ptr2block - 16;
+    i64 oldtotal = oldblock[0];
+
+    i64 total = n__new_size + 16;
+
+    i64 block = sys_mremap( oldblock, oldtotal, total, 1 );
+
+    if (block == (-1))
+    {
+        return -1;
+    }
+
+    block[0] = total;
+
+    return block + 16;
+}
+
+fun memfree(i64 p__ptr2block)
+{
+    if (p__ptr2block < 16777216)
+    {
+        return 1;
+    }
+
+    if (p__ptr2block == 0)
+    {
+        return -1;
+    }
+
+    i64 header = p__ptr2block - 16;
+    i64 total = header[0];
+
+    sys_munmap( header, total );
+
+    return 0;
+}

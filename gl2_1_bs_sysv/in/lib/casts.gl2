@@ -1,0 +1,64 @@
+
+
+fun int(i64 s__string)
+{
+    i64 integer = 0, sign = 1, i = 0 ;
+
+    while (s__string[i] == 32)
+    {
+        i = i + 1;
+    }
+
+    if (s__string[i] == 45)
+    {
+        sign = -1;
+        i = i + 1;
+    }
+
+    while (isdigit(s__string[i]) == 1)
+    {
+        integer = integer * 10 + (s__string[i] - 48);
+        i = i + 1;
+    }
+
+    return sign * integer;
+}
+
+fun string(i64 n__number)
+{
+    i64 str = arrinit(20), sign = 1, i = 0, k = 0 ;
+    i64 tmp = 0 ;
+
+    if (n__number < 0)
+    {
+        sign = -1;
+        n__number = -n__number;
+    }
+
+    while (n__number > 0)
+    {
+        str[i] = mmod(n__number, 10) + 48;
+        n__number = n__number / 10;
+        i = i + 1;
+    }
+
+    if (sign == -1)
+    {
+        str[i] = 45;
+        i = i + 1;
+    }
+
+    str[i] = 0;
+
+    while (k < i / 2)
+    {
+        tmp = str[k];
+
+        str[k] = str[i - k - 1];
+        str[i - k - 1] = tmp;
+
+        k = k + 1;
+    }
+
+    return str;
+}

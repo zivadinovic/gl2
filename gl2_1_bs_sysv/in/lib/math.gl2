@@ -1,0 +1,26 @@
+
+
+fun madd(i64 n__left, i64 n__right)
+{
+    return n__left + n__right;
+}
+
+fun msub(i64 n__left, i64 n__right)
+{
+    return n__left - n__right;
+}
+
+fun mmul(i64 n__left, i64 n__right)
+{
+    return n__left * n__right;
+}
+
+fun mdiv(i64 n__left, i64 n__right)
+{
+    return n__left / n__right;
+}
+
+fun mmod(i64 n__left, i64 n__right)
+{
+    return n__left - (n__right * (n__left / n__right));
+}

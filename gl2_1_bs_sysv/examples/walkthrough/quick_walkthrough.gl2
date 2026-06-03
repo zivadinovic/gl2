@@ -1,0 +1,50 @@
+
+
+asm { "## since the gl2 does not support comments\n" }
+asm { "## we can add them using built-in asm block extension\n" }
+
+fun add(i64 a, i64 b)
+{
+    return a + b;
+}
+
+fun main()
+{
+    i64 str = "hello world";
+    i64 num = 123456789;
+
+    i64 arr = arrinit(5);
+    arr[0] = 5;
+    arr[1] = "a string to print";
+    i64 size = arr[-1];
+    printf("first element: ~i, second element: ~s\n", @arr);
+
+    memfree(arr);
+
+    if (add(2, 2) == 4)
+    {
+        printf("correct\n");
+    }
+
+    i64 i = 0, flag = 0;
+    while (i < 10)
+    {
+        flag = 0;
+
+        if (i == 0)
+        {
+            printf("0\n");
+            flag = 1;
+        }
+        if (flag == 0)
+        {
+            printf(string(i));
+            printf("\n");
+        }
+
+        i = i + 1;
+    }
+
+    printf("hello world\n");
+    return 0;
+}
