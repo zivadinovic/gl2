@@ -30,7 +30,7 @@ fun main(i64 n__argc, i64 p2__argv)
 
 ```bash
 git clone https://github.com/zivadinovic/gl2
-cd gl2
+cd gl2/gl2_1_bs_sysv
 chmod +x bootstrapit.sh
 chmod +x compileit.sh
 ./bootstrapit.sh
